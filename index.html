@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nick Dalhuisen – Game Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --accent: #4aa3ff;
+    --accent2: #8b5cf6;
+    --accent3: #22c55e; /* NIEUW GROEN */
+    --accent4: #f59e0b; /* ORANJE */
+    --text: #ffffff;
+    --text-dim: #cbd5e1;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #1a2238, #0d1117);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* CURSOR GLOW */
+.cursor {
+    position: fixed;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, #4aa3ff33, #22c55e22, transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+/* NAV */
+.nav {
+    font-family: 'Orbitron', sans-serif;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #0d1117cc;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+/* HERO VIDEO */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 72px;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.hero p { color: var(--text-dim); }
+
+.cta {
+    padding: 14px 30px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent4));
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #4aa3ff88;
+}
+
+/* SECTION */
+.section {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 60px 20px;
+    position: relative;
+}
+
+/* PROJECTS */
+#projects {
+    border-radius: 24px;
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    box-shadow: inset 0 0 60px #000000aa;
+    overflow: hidden;
+}
+
+#projects::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px 300px at 20% 10%, #4aa3ff33, transparent),
+                radial-gradient(600px 300px at 80% 90%, #22c55e33, transparent);
+    pointer-events: none;
+}
+
+.section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* CARD */
+.card {
+    background: linear-gradient(145deg, #1f2937, #111827);
+    border-radius: 20px;
+    overflow: hidden;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 0.6s ease;
+    border: 1px solid #ffffff10;
+}
+
+.card.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content { padding: 20px; }
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #4aa3ff55;
+}
+
+/* SKILLS */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.skill {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #4aa3ff33, #8b5cf633, #22c55e33);
+    border: 1px solid #ffffff20;
+    backdrop-filter: blur(8px);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, #ffffff22, transparent);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.skill:hover::before {
+    opacity: 1;
+}
+
+.skill:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px #4aa3ff44;
+}
+
+/* SCROLL ANIMATION SKILLS */
+
+;
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 60px;
+    color: var(--text-dim);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<div class="nav">
+    <div>Nick.dev</div>
+</div>
+
+<section class="hero">
+    <video autoplay muted loop>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+        <h1>Nick Dalhuisen</h1>
+        <p>Game Developer • Unity Specialist</p>
+        <a href="#projects" class="cta">Bekijk mijn werk</a>
+    </div>
+</section>
+
+<section class="section" id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+
+        <div class="card">
+            <img src="fotos/battle of imaginatioon.png">
+            <div class="card-content">
+                <h3>Battle of Imagination</h3>
+                <p>Fast-paced shmup.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fotos/overkill protocoll.png">
+            <div class="card-content">
+                <h3>Overkill Protocol</h3>
+                <p>High intensity action.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fotos/cat clash.png">
+            <div class="card-content">
+                <h3>Cat Clash</h3>
+                <p>Playful combat game.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill">Unity</div>
+        <div class="skill">C#</div>
+        <div class="skill">Game Design</div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Nick Dalhuisen</p>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+const cards = document.querySelectorAll('.card');
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100){
+            card.classList.add('visible');
+        }
+    });
+});
+
+/* SKILL SCROLL ANIMATION */
+const skills = document.querySelectorAll('.skill');
+
+window.addEventListener('scroll', () => {
+    skills.forEach((skill, index) => {
+        const rect = skill.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50){
+            setTimeout(() => {
+                skill.style.opacity = 1;
+                skill.style.transform = 'translateY(0) scale(1)';
+            }, index * 100);
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
